@@ -42,8 +42,27 @@
   
   /* Display a point marker with pop-up text */
   const popupText = "Hartford"
-  L.marker([41.77, -72.69]).addTo(map) // EDIT marker coordinates
+  const defaultStyle = {
+    radius: 8,
+    fillColor: "#3388ff",
+    color: "#002266",
+    weight: 2,
+    fillOpacity: 0.8
+  };
+
+  const marker= L.circleMarker([41.77, -72.69], defaultStyle).addTo(map) // EDIT marker coordinates
   .bindPopup(popupText); // EDIT pop-up text message
+
+  marker.on('mouseover', function (e){
+    this.setStyle({
+      fillColor: '#ff8d00', // Highlight color
+      color: '#ff0000'
+    });
+  });
+
+  marker.on('mouseout', function (e){
+    this.setStyle(defaultStyle)
+  })
 
   </script>
 </body>
